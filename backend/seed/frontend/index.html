@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Reminders App (Demo)</title>
+  <style>
+    body{ font-family: Arial, sans-serif; margin:40px; }
+    input, textarea{ padding:8px; margin:6px 0; width:250px; }
+    button{ padding:8px 12px; margin:6px 0; }
+    #app{ max-width:680px; }
+    #msg{ color:red; }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h2>Reminders App — Demo</h2>
+    <div id="auth">
+      <h3>Login</h3>
+      <input id="loginUser" placeholder="username"/><br/>
+      <input id="loginPass" placeholder="password" type="password"/><br/>
+      <button id="btnLogin">Login</button>
+      <hr/>
+      <h3>Register</h3>
+      <input id="regUser" placeholder="username"/><br/>
+      <input id="regPass" placeholder="password" type="password"/><br/>
+      <button id="btnReg">Register</button>
+      <div id="msg"></div>
+    </div>
+
+    <div id="appArea" style="display:none;">
+      <h3>Welcome <span id="who"></span></h3>
+      <button id="btnLogout">Logout</button>
+      <h4>Create Task</h4>
+      <input id="taskTitle" placeholder="title"/><br/>
+      <input id="taskAssignee" placeholder="assignee user id"/><br/>
+      <textarea id="taskDesc" placeholder="description" rows="3" cols="50"></textarea><br/>
+      <button id="btnCreateTask">Create Task</button>
+
+      <h4>My Tasks</h4>
+      <button id="btnMyTasks">Load my tasks</button>
+      <pre id="tasksPre"></pre>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
