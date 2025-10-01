@@ -1,7 +1,5 @@
 // frontend/app.js
 // Very small demo client that talks to the backend API.
-// During local testing this expects backend at http://localhost:4000
-// When deployed, we'll change the API base URL to your hosted backend.
 
 const API = 'https://reminders-app-vj5v.onrender.com';
 
