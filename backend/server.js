@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 10000;
 
 app.use(bodyParser.json());
 
-// ✅ Allow CORS for all origins (safe for now, we’ll restrict later)
+// ✅ Allow CORS for all origins (safe for now, will restrict later)
 app.use(cors({ origin: '*' }));
 
 // Database connection
@@ -40,6 +40,7 @@ function authMiddleware(req, res, next) {
 
 // --- Routes
 
+// Health check
 app.get('/api/health', (req, res) => {
   res.json({ ok: true });
 });
@@ -115,8 +116,7 @@ app.get('/api/users/:id/tasks', authMiddleware, async (req, res) => {
   }
 });
 
-// Start server
-// Simple debug page served from the backend domain so browser requests are same-origin (no CORS)
+// --- Debug page (same-origin test for login, bypasses CORS)
 app.get('/debug-page', (req, res) => {
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
   res.send(`<!doctype html>
@@ -153,6 +153,8 @@ document.getElementById('btn').onclick = async ()=>{
 </body>
 </html>`);
 });
+
+// Start server
 app.listen(PORT, () => {
   console.log('API listening', PORT);
 });
