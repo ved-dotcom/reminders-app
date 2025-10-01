@@ -3,7 +3,7 @@
 // During local testing this expects backend at http://localhost:4000
 // When deployed, we'll change the API base URL to your hosted backend.
 
-const API = (window.location.origin.includes('file:') ? 'http://localhost:4000' : '') || 'http://localhost:4000';
+const API = 'https://reminders-app-vj5v.onrender.com';
 
 const el = id => document.getElementById(id);
 
