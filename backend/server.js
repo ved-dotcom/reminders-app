@@ -116,6 +116,43 @@ app.get('/api/users/:id/tasks', authMiddleware, async (req, res) => {
 });
 
 // Start server
+// Simple debug page served from the backend domain so browser requests are same-origin (no CORS)
+app.get('/debug-page', (req, res) => {
+  res.setHeader('Content-Type', 'text/html; charset=utf-8');
+  res.send(`<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Debug login (same origin)</title>
+<style>body{font-family:Arial;margin:24px} input{padding:8px;margin:6px 0;width:260px} button{padding:8px}</style>
+</head>
+<body>
+  <h3>Debug login (served from backend)</h3>
+  <div><label>Username</label><br/><input id="u" value="director"></div>
+  <div><label>Password</label><br/><input id="p" value="Ved@rasino" type="password"></div>
+  <div><button id="btn">Send LOGIN POST</button></div>
+  <h4>Result</h4>
+  <pre id="out" style="background:#f6f6f6;padding:12px;border:1px solid #ddd"></pre>
+<script>
+document.getElementById('btn').onclick = async ()=>{
+  const out = document.getElementById('out');
+  out.textContent = 'sending...';
+  try{
+    const u = document.getElementById('u').value;
+    const p = document.getElementById('p').value;
+    const res = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: u, password: p })
+    });
+    const text = await res.text();
+    out.textContent = 'HTTP ' + res.status + '\\n\\n' + text;
+  }catch(e){
+    out.textContent = 'Network error (fetch threw):\\n' + e.toString();
+  }
+};
+</script>
+</body>
+</html>`);
+});
 app.listen(PORT, () => {
   console.log('API listening', PORT);
 });
