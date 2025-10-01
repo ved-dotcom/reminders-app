@@ -1,5 +1,9 @@
 // backend/server.js
 const express = require('express');
+const cors = require('cors');
+app.use(cors({
+  origin: '*'
+}));
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
